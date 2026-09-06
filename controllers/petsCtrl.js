@@ -1,7 +1,5 @@
 // controllers/petsCtrl.js
 const Pet = require('../models/pet.js');
-const express = require('express');
-const router = express.Router();
 
 const create = async (req, res) => {
   try {
@@ -10,7 +8,7 @@ const create = async (req, res) => {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
 const index = async (req, res) => {
   try {
@@ -19,7 +17,7 @@ const index = async (req, res) => {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
 const show = async (req, res) => {
   try {
@@ -33,7 +31,7 @@ const show = async (req, res) => {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
 const update = async (req, res) => {
   try {
@@ -47,7 +45,7 @@ const update = async (req, res) => {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
 const deletePet = async (req, res) => {
   try {
@@ -62,13 +60,12 @@ const deletePet = async (req, res) => {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
-// Routes
-router.post('/', create);
-router.get('/', index);
-router.get('/:id', show);
-router.put('/:id', update);
-router.delete('/:id', deletePet);
-
-module.exports = router;
+module.exports = {
+  create,
+  index,
+  show,
+  update,
+  deletePet
+};

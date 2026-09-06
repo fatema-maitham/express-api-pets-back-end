@@ -1,11 +1,13 @@
 const dotenv = require('dotenv');
 dotenv.config();
+
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const logger = require('morgan');
+const cors = require('cors');
 
-const petsCtrl = require('./controllers/petsCtrl');
+const petsRouter = require('./routes/petsRouter');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -14,10 +16,11 @@ mongoose.connection.on('connected', () => {
 });
 
 app.use(express.json());
+app.use(cors());
 app.use(logger('dev'));
 
 // Routes go here
-app.use('/pets', petsCtrl);
+app.use('/pets', petsRouter);
 
 app.listen(3000, () => {
   console.log('The express app is ready!');
