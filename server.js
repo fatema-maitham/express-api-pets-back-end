@@ -18,6 +18,7 @@ app.use(logger('dev'));
 
 // Routes go here
 app.post('/pets', petsCtrl.create);
+app.get('/pets', petsCtrl.index);
 
 app.listen(3000, () => {
   console.log('The express app is ready!');
