@@ -8,7 +8,6 @@ const create = async (req, res) => {
     const newPet = await Pet.create(req.body);
     res.status(201).json(newPet);
   } catch (err) {
-    // more likely 422 but we will deal with them later (validation not a server error)
     res.status(500).json({ err: err.message });
   }
 }
@@ -65,10 +64,11 @@ const deletePet = async (req, res) => {
   }
 }
 
-module.exports = {
-  create,
-  index,
-  show,
-  update,
-  delete: deletePet,
-}
+// Routes
+router.post('/', create);
+router.get('/', index);
+router.get('/:id', show);
+router.put('/:id', update);
+router.delete('/:id', deletePet);
+
+module.exports = router;
